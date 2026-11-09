@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple, responsive to-do list with local storage.">
+  <title>TaskFlow — To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">MAKE TODAY COUNT</p>
+        <h1>My tasks<span>.</span></h1>
+        <p class="subtitle">A little progress each day adds up.</p>
+      </div>
+      <div class="date-chip" id="today-label" aria-label="Today's date"></div>
+    </header>
+
+    <section class="composer" aria-label="Add a task">
+      <form id="task-form">
+        <label class="sr-only" for="task-input">New task</label>
+        <input id="task-input" type="text" maxlength="120"
+               placeholder="What needs to get done?" autocomplete="off" required>
+        <button class="add-button" type="submit"><span aria-hidden="true">+</span> Add task</button>
+      </form>
+      <p class="hint">Press Enter to add a task</p>
+    </section>
+
+    <section class="task-panel" aria-label="Your task list">
+      <div class="panel-top">
+        <div>
+          <h2>Your list</h2>
+          <p id="task-summary" class="task-summary" aria-live="polite">No tasks yet</p>
+        </div>
+        <button id="clear-completed" class="text-button" type="button">Clear completed</button>
+      </div>
+
+      <nav class="filters" aria-label="Filter tasks">
+        <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">All <span id="all-count">0</span></button>
+        <button class="filter-button" type="button" data-filter="active" aria-pressed="false">Active <span id="active-count">0</span></button>
+        <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">Completed <span id="completed-count">0</span></button>
+      </nav>
+
+      <ul id="task-list" class="task-list" aria-label="Tasks"></ul>
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon" aria-hidden="true">✦</div>
+        <h3 id="empty-title">A fresh start</h3>
+        <p id="empty-message">Add your first task above and make it happen.</p>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <span>Saved automatically on this device</span>
+      <span><span class="status-dot"></span> Local storage enabled</span>
+    </footer>
+  </main>
+
+  <dialog id="edit-dialog" class="edit-dialog">
+    <form id="edit-form" method="dialog">
+      <h2>Edit task</h2>
+      <label for="edit-input">Task description</label>
+      <input id="edit-input" type="text" maxlength="120" required>
+      <div class="dialog-actions">
+        <button id="cancel-edit" class="secondary-button" type="button">Cancel</button>
+        <button class="add-button" type="submit">Save changes</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
